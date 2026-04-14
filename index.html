@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dla mojej najpiękniejszej ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+       
         body {
             margin: 0;
             padding: 0;
@@ -16,13 +16,13 @@
             overflow-x: hidden;
             text-align: center;
         }
-        
+       
         .container {
             max-width: 820px;
             margin: 40px auto;
             padding: 20px;
         }
-        
+       
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 4.2rem;
@@ -30,18 +30,18 @@
             text-shadow: 0 0 25px rgba(255, 105, 180, 0.9);
             margin: 20px 0 10px 0;
         }
-        
+       
         .heart {
             font-size: 4.8rem;
             animation: beat 1.3s infinite;
             display: inline-block;
         }
-        
+       
         @keyframes beat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.35); }
         }
-        
+       
         .photo {
             width: 270px;
             height: 270px;
@@ -51,7 +51,7 @@
             object-fit: cover;
             margin: 25px auto;
         }
-        
+       
         .letter {
             background: white;
             padding: 45px 35px;
@@ -63,7 +63,33 @@
             line-height: 1.85;
             font-size: 1.15rem;
         }
-        
+       
+        /* === NAWIGACJA === */
+        .nav {
+            margin: 25px 0 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+       
+        .nav button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,105,180,0.3);
+        }
+       
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
+        }
+
         button {
             background: #ff69b4;
             color: white;
@@ -75,12 +101,12 @@
             margin: 25px 10px;
             transition: all 0.3s;
         }
-        
+       
         button:hover {
             background: #ff1493;
             transform: scale(1.08);
         }
-        
+       
         .floating-hearts {
             position: fixed;
             top: 0; left: 0;
@@ -92,13 +118,21 @@
 </head>
 <body>
     <div class="floating-hearts"></div>
-    
+   
     <div class="container">
         <h1>Dla mojej <span class="heart">❤️</span> [Jej imię]</h1>
-        
+       
         <!-- ZMIEŃ TEN LINK NA SWOJE ZDJĘCIE -->
         <img src="https://twoj-link-do-zdjecia.jpg" alt="My love" class="photo">
-        
+       
+        <!-- NAWIGACJA -->
+        <div class="nav">
+            <button onclick="window.location.href='index.html'">❤️ Główna</button>
+            <button onclick="window.location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="window.location.href='odliczanie.html'">Odliczanie dni</button>
+            <button onclick="window.location.href='os-czasu.html'">Nasza oś czasu</button>
+        </div>
+
         <div class="letter">
             <p>Kochana [Jej imię],</p>
             <p>Od pierwszego dnia jesteś moim największym szczęściem. Dziękuję Ci za każdy uśmiech, za każdą chwilę, w której czuję się przy Tobie jak w domu.</p>
@@ -106,16 +140,15 @@
             <p>Obiecuję, że będę Cię kochał każdego dnia coraz mocniej.</p>
             <p><strong>Na zawsze Twój,<br>[Twoje imię] ❤️</strong></p>
         </div>
-        
+       
         <button onclick="alert('Wiedziałem, że klikniesz 😘 Kocham Cię najmocniej na świecie!')">Kliknij jeśli też mnie kochasz</button>
-        
+       
         <p style="margin-top: 60px; font-size: 1.2rem; color: #fff;">
-            Zrobione specjalnie dla Ciebie z całego serca 💕<br>
-            <small>https://norrisyt.github.io/nasza-milosc</small>
+            Zrobione specjalnie dla Ciebie z całego serca 💕
         </p>
     </div>
 
-    <!-- Muzyka w tle (możesz później zmienić) -->
+    <!-- Muzyka w tle -->
     <audio autoplay loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
@@ -133,9 +166,9 @@
             document.querySelector('.floating-hearts').appendChild(heart);
             setTimeout(() => heart.remove(), 16000);
         }
-        
+       
         setInterval(createHeart, 280);
-        
+       
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fall {
