@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasz Kalendarz Miłości ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            text-align: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.4rem;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(255,105,180,0.9);
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .calendar {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            color: #ff1493;
+        }
+
+        .nav-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 12px;
+            color: #ff1493;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px 8px;
+            height: 70px;
+            vertical-align: top;
+            border: 1px solid #ffe0e9;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        td:hover {
+            background: #fff0f5;
+        }
+
+        .other-month {
+            color: #ddd;
+        }
+
+        .today {
+            background: #ff1493;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .heart-day {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            font-size: 1.3rem;
+            animation: beat 1.2s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #ff1493;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            max-width: 500px;
+            width: 90%;
+            text-align: left;
+        }
+
+        .nav {
+            margin: 40px 0 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+        .nav button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nasz Kalendarz Miłości <span class="heart">❤️</span></h1>
+        <p class="subtitle">Każdy dzień z Tobą jest wyjątkowy</p>
+
+        <!-- Nawigacja -->
+        <div class="nav">
+            <button onclick="location.href='index.html'">❤️ Strona główna</button>
+            <button onclick="location.href='powody.html'">1000 Powodów</button>
+            <button onclick="location.href='koperty.html'">Koperty specjalne</button>
+            <button onclick="location.href='kalendarz.html'">Kalendarz Miłości</button>
+            <button onclick="location.href='galeria.html'">Galeria</button>
+            <button onclick="location.href='odliczanie.html'">Odliczanie</button>
+            <button onclick="location.href='os-czasu.html'">Oś czasu</button>
+        </div>
+
+        <div class="calendar">
+            <div class="header">
+                <button class="nav-btn" onclick="prevMonth()">‹</button>
+                <span id="monthYear"></span>
+                <button class="nav-btn" onclick="nextMonth()">›</button>
+            </div>
+            <table id="calendarTable">
+                <thead>
+                    <tr>
+                        <th>Nd</th><th>Pn</th><th>Wt</th><th>Śr</th><th>Cz</th><th>Pt</th><th>So</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal do dodawania notatki -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <h2 id="modalDate"></h2>
+            <textarea id="noteText" rows="6" style="width:100%; padding:15px; border-radius:15px; border:2px solid #ff69b4; font-size:1.1rem;" placeholder="Napisz coś pięknego dla nas..."></textarea>
+            <br><br>
+            <button onclick="saveNote()" style="background:#ff69b4; color:white; padding:14px 40px; border:none; border-radius:50px; cursor:pointer;">Zapisz notatkę ❤️</button>
+            <button onclick="closeModal()" style="background:#ccc; color:#333; padding:14px 30px; border:none; border-radius:50px; cursor:pointer; margin-left:15px;">Anuluj</button>
+        </div>
+    </div>
+
+    <script>
+        let currentDate = new Date();
+        let notes = JSON.parse(localStorage.getItem("loveNotes")) || {};
+
+        function renderCalendar() {
+            const monthYear = document.getElementById("monthYear");
+            const body = document.getElementById("calendarBody");
+            body.innerHTML = "";
+
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            monthYear.textContent = currentDate.toLocaleString('pl-PL', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+            let date = 1;
+            let prevMonthDate = daysInPrevMonth - firstDay + 1;
+
+            for (let i = 0; i < 6; i++) {
+                let row = document.createElement("tr");
+
+                for (let j = 0; j < 7; j++) {
+                    let cell = document.createElement("td");
+
+                    if (i === 0 && j < firstDay) {
+                        cell.textContent = prevMonthDate++;
+                        cell.classList.add("other-month");
+                    } 
+                    else if (date > daysInMonth) {
+                        cell.textContent = date - daysInMonth;
+                        cell.classList.add("other-month");
+                        date++;
+                    } 
+                    else {
+                        const fullDate = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
+                        
+                        cell.textContent = date;
+                        
+                        // Dzisiejszy dzień
+                        if (date === new Date().getDate() && 
+                            month === new Date().getMonth() && 
+                            year === new Date().getFullYear()) {
+                            cell.classList.add("today");
+                        }
+
+                        // Dni z notatkami
+                        if (notes[fullDate]) {
+                            const heart = document.createElement("span");
+                            heart.className = "heart-day";
+                            heart.textContent = "❤️";
+                            cell.appendChild(heart);
+                        }
+
+                        // Kliknięcie w dzień
+                        cell.onclick = () => openNoteModal(fullDate, cell.textContent);
+                        date++;
+                    }
+                    row.appendChild(cell);
+                }
+                body.appendChild(row);
+                if (date > daysInMonth) break;
+            }
+        }
+
+        function openNoteModal(dateStr, day) {
+            document.getElementById("modalDate").textContent = `Notatka na ${day} ${currentDate.toLocaleString('pl-PL', { month: 'long' })} ${currentDate.getFullYear()}`;
+            document.getElementById("noteText").value = notes[dateStr] || "";
+            document.getElementById("noteModal").style.display = "flex";
+            window.currentNoteDate = dateStr;
+        }
+
+        function saveNote() {
+            const text = document.getElementById("noteText").value.trim();
+            if (window.currentNoteDate) {
+                if (text) {
+                    notes[window.currentNoteDate] = text;
+                } else {
+                    delete notes[window.currentNoteDate];
+                }
+                localStorage.setItem("loveNotes", JSON.stringify(notes));
+            }
+            closeModal();
+            renderCalendar();
+        }
+
+        function closeModal() {
+            document.getElementById("noteModal").style.display = "none";
+        }
+
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        }
+
+        // Inicjalizacja
+        window.onload = () => {
+            renderCalendar();
+        };
+    </script>
+</body>
+</html>
