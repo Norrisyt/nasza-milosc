@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Powodów Dlaczego Cię Kocham ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            text-align: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.2rem;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(255,105,180,0.9);
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        .reason-card {
+            background: white;
+            padding: 25px 30px;
+            margin: 20px auto;
+            max-width: 700px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            text-align: left;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        .reason-number {
+            color: #ff1493;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .nav button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
+        }
+        .clear-btn {
+            background: #ff1493;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>1000 Powodów <span style="font-size:4.5rem;">❤️</span></h1>
+        <p class="subtitle">Dlaczego kocham właśnie Ciebie...</p>
+
+        <!-- Nawigacja -->
+        <div class="nav">
+            <button onclick="location.href='index.html'">❤️ Główna</button>
+            <button onclick="location.href='powody.html'">Wszystkie powody</button>
+            <button onclick="location.href='koperty.html'">Koperty specjalne</button>
+            <button onclick="location.href='galeria.html'">Galeria</button>
+        </div>
+
+        <div id="reasonsContainer"></div>
+
+        <button class="clear-btn" onclick="clearAllReasons()">🗑️ Wyczyść wszystkie powody</button>
+    </div>
+
+    <script>
+        let savedReasons = JSON.parse(localStorage.getItem("savedReasons")) || [];
+
+        function renderReasons() {
+            const container = document.getElementById("reasonsContainer");
+            container.innerHTML = "";
+
+            if (savedReasons.length === 0) {
+                container.innerHTML = `
+                    <div class="reason-card" style="text-align:center; color:#888;">
+                        Jeszcze nie ma zapisanych powodów...<br>
+                        Wróć na stronę główną i klikaj w duże serce ❤️
+                    </div>`;
+                return;
+            }
+
+            savedReasons.forEach((reason, index) => {
+                const div = document.createElement("div");
+                div.className = "reason-card";
+                div.innerHTML = `
+                    <span class="reason-number">Powód #${savedReasons.length - index}</span><br>
+                    ${reason}
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function clearAllReasons() {
+            if (confirm("Na pewno chcesz usunąć WSZYSTKIE zapisane powody?")) {
+                localStorage.removeItem("savedReasons");
+                savedReasons = [];
+                renderReasons();
+            }
+        }
+
+        // Renderuj przy załadowaniu
+        window.onload = renderReasons;
+    </script>
+</body>
+</html>
