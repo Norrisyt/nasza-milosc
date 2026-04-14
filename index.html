@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dla mojej najpiękniejszej ❤️</title>
+
+    <!-- BLOKADA HASŁEM -->
+    <script>
+        const correctPassword = "Shire123%";
+        if (!localStorage.getItem("adminMode")) {
+            window.location.href = "maintenance.html";
+        }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
        
@@ -64,7 +73,6 @@
             font-size: 1.15rem;
         }
 
-        /* Nawigacja */
         .nav {
             margin: 30px 0 40px 0;
             display: flex;
@@ -82,7 +90,6 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255,105,180,0.3);
         }
        
         .nav button:hover {
@@ -98,7 +105,6 @@
             font-size: 1.35rem;
             border-radius: 50px;
             cursor: pointer;
-            margin: 25px 10px;
             transition: all 0.3s;
         }
        
@@ -120,12 +126,10 @@
     <div class="floating-hearts"></div>
    
     <div class="container">
-        <h1>Dla mojej <span class="heart">❤️</span>Werki</h1>
+        <h1>Dla mojej <span class="heart">❤️</span> [Jej imię]</h1>
        
-        <!-- ZMIEŃ TEN LINK NA SWOJE ZDJĘCIE -->
         <img src="https://twoj-link-do-zdjecia.jpg" alt="Moja miłość" class="photo">
 
-        <!-- Nawigacja -->
         <div class="nav">
             <button onclick="window.location.href='index.html'">❤️ Główna</button>
             <button onclick="window.location.href='galeria.html'">Galeria wspomnień</button>
@@ -134,7 +138,7 @@
         </div>
        
         <div class="letter">
-            <p>Kochana Misiu ,</p>
+            <p>Kochana [Jej imię],</p>
             <p>Od pierwszego dnia jesteś moim największym szczęściem. Dziękuję Ci za każdy uśmiech, za każdą chwilę, w której czuję się przy Tobie jak w domu.</p>
             <p>Kocham Cię za to, jaka jesteś — za Twój śmiech, za Twoje serce, za to, że przy Tobie świat jest piękniejszy.</p>
             <p>Obiecuję, że będę Cię kochał każdego dnia coraz mocniej.</p>
@@ -172,10 +176,7 @@
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fall {
-                to {
-                    transform: translateY(110vh) rotate(40deg);
-                    opacity: 0;
-                }
+                to { transform: translateY(110vh) rotate(40deg); opacity: 0; }
             }
         `;
         document.head.appendChild(style);
