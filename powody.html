@@ -15,23 +15,14 @@
             text-align: center;
             min-height: 100vh;
         }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 4.2rem;
             color: #fff;
             text-shadow: 0 0 25px rgba(255,105,180,0.9);
-            margin-bottom: 10px;
         }
-        .subtitle {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 40px;
-        }
+        .subtitle { font-size: 1.5rem; color: #fff; margin-bottom: 40px; }
         .reason-card {
             background: white;
             padding: 25px 30px;
@@ -43,29 +34,28 @@
             font-size: 1.2rem;
             line-height: 1.7;
         }
-        .reason-number {
-            color: #ff1493;
-            font-weight: 700;
-            font-size: 1.1rem;
+        .nav {
+            margin: 35px 0 45px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
         }
         .nav button {
             background: #ff69b4;
             color: white;
             border: none;
-            padding: 14px 32px;
-            font-size: 1.15rem;
+            padding: 14px 28px;
+            font-size: 1.1rem;
             border-radius: 50px;
             cursor: pointer;
-            margin: 10px;
-            transition: 0.3s;
+            transition: all 0.3s;
         }
-        .nav button:hover {
-            background: #ff1493;
-            transform: scale(1.08);
-        }
+        .nav button:hover { background: #ff1493; transform: scale(1.08); }
         .clear-btn {
             background: #ff1493;
-            margin-top: 40px;
+            padding: 14px 40px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -74,12 +64,13 @@
         <h1>1000 Powodów <span style="font-size:4.5rem;">❤️</span></h1>
         <p class="subtitle">Dlaczego kocham właśnie Ciebie...</p>
 
-        <!-- Nawigacja -->
         <div class="nav">
-            <button onclick="location.href='index.html'">❤️ Główna</button>
-            <button onclick="location.href='powody.html'">Wszystkie powody</button>
+            <button onclick="location.href='index.html'">❤️ Strona główna</button>
+            <button onclick="location.href='powody.html'">1000 Powodów</button>
             <button onclick="location.href='koperty.html'">Koperty specjalne</button>
-            <button onclick="location.href='galeria.html'">Galeria</button>
+            <button onclick="location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="location.href='odliczanie.html'">Odliczanie dni</button>
+            <button onclick="location.href='os-czasu.html'">Nasza oś czasu</button>
         </div>
 
         <div id="reasonsContainer"></div>
@@ -95,34 +86,26 @@
             container.innerHTML = "";
 
             if (savedReasons.length === 0) {
-                container.innerHTML = `
-                    <div class="reason-card" style="text-align:center; color:#888;">
-                        Jeszcze nie ma zapisanych powodów...<br>
-                        Wróć na stronę główną i klikaj w duże serce ❤️
-                    </div>`;
+                container.innerHTML = `<div class="reason-card" style="text-align:center;color:#888;">Kliknij serce na stronie głównej, żeby dodać pierwsze powody ❤️</div>`;
                 return;
             }
 
             savedReasons.forEach((reason, index) => {
                 const div = document.createElement("div");
                 div.className = "reason-card";
-                div.innerHTML = `
-                    <span class="reason-number">Powód #${savedReasons.length - index}</span><br>
-                    ${reason}
-                `;
+                div.innerHTML = `<span style="color:#ff1493;font-weight:700;">Powód #${savedReasons.length - index}</span><br>${reason}`;
                 container.appendChild(div);
             });
         }
 
         function clearAllReasons() {
-            if (confirm("Na pewno chcesz usunąć WSZYSTKIE zapisane powody?")) {
+            if (confirm("Na pewno chcesz usunąć wszystkie zapisane powody?")) {
                 localStorage.removeItem("savedReasons");
                 savedReasons = [];
                 renderReasons();
             }
         }
 
-        // Renderuj przy załadowaniu
         window.onload = renderReasons;
     </script>
 </body>
