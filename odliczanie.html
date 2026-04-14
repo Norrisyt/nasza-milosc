@@ -6,7 +6,7 @@
     <title>Nasze odliczanie ❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
-        
+       
         body {
             margin: 0;
             padding: 0;
@@ -19,12 +19,12 @@
             align-items: center;
             justify-content: center;
         }
-        
+       
         .container {
             max-width: 700px;
             padding: 40px 20px;
         }
-        
+       
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 3.8rem;
@@ -32,14 +32,14 @@
             text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
             margin-bottom: 10px;
         }
-        
+       
         .subtitle {
             font-size: 1.4rem;
             color: #fff;
             margin-bottom: 40px;
             opacity: 0.95;
         }
-        
+       
         .counter {
             background: white;
             padding: 50px 40px;
@@ -47,7 +47,7 @@
             box-shadow: 0 15px 50px rgba(0,0,0,0.15);
             margin: 30px auto;
         }
-        
+       
         .days {
             font-size: 6.5rem;
             font-weight: bold;
@@ -55,30 +55,55 @@
             line-height: 1;
             margin: 0;
         }
-        
+       
         .days-label {
             font-size: 1.6rem;
             color: #666;
             margin-top: 10px;
             letter-spacing: 2px;
         }
-        
+       
         .date {
             margin-top: 30px;
             font-size: 1.1rem;
             color: #555;
         }
-        
+       
         .heart {
             font-size: 4rem;
             animation: beat 1.4s infinite;
         }
-        
+       
         @keyframes beat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.3); }
         }
-        
+
+        /* Nawigacja */
+        .nav {
+            margin: 30px 0 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+       
+        .nav button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+       
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
+        }
+
         button {
             margin-top: 30px;
             background: #ff69b4;
@@ -89,7 +114,7 @@
             border-radius: 50px;
             cursor: pointer;
         }
-        
+       
         button:hover {
             background: #ff1493;
             transform: scale(1.05);
@@ -100,40 +125,42 @@
     <div class="container">
         <h1>Od 1 października 2025 <span class="heart">❤️</span></h1>
         <p class="subtitle">Minęło razem z Tobą...</p>
-        
+
+        <!-- Nawigacja -->
+        <div class="nav">
+            <button onclick="window.location.href='index.html'">❤️ Główna</button>
+            <button onclick="window.location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="window.location.href='odliczanie.html'">Odliczanie dni</button>
+            <button onclick="window.location.href='os-czasu.html'">Nasza oś czasu</button>
+        </div>
+       
         <div class="counter">
             <div class="days" id="days">195</div>
             <div class="days-label">DNI</div>
         </div>
-        
+       
         <div class="date">
             Od: <strong>1 października 2025</strong><br>
             Dzisiaj: <strong id="today"></strong>
         </div>
-        
+       
         <button onclick="window.location.href='index.html'">Wróć do głównej strony</button>
     </div>
 
     <script>
-        // Oblicza dni od 1.10.2025
         function calculateDays() {
-            const startDate = new Date(2025, 9, 1); // 2025-10-01 (miesiąc 9 = październik)
+            const startDate = new Date(2025, 9, 1);
             const today = new Date();
-            
             const diffTime = Math.abs(today - startDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
+           
             document.getElementById('days').textContent = diffDays;
-            
-            // Pokazuje dzisiejszą datę w ładnym formacie
+           
             const options = { day: 'numeric', month: 'long', year: 'numeric' };
             document.getElementById('today').textContent = today.toLocaleDateString('pl-PL', options);
         }
-        
-        // Uruchom przy załadowaniu strony
+       
         window.onload = calculateDays;
-        
-        // Aktualizuj co minutę (na wypadek zmiany daty o północy)
         setInterval(calculateDays, 60000);
     </script>
 </body>
