@@ -15,23 +15,14 @@
             text-align: center;
             min-height: 100vh;
         }
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+        .container { max-width: 1100px; margin: 40px auto; padding: 20px; }
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 4.4rem;
             color: #fff;
             text-shadow: 0 0 25px rgba(255,105,180,0.9);
-            margin-bottom: 10px;
         }
-        .subtitle {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 40px;
-        }
+        .subtitle { font-size: 1.5rem; color: #fff; margin-bottom: 40px; }
 
         .calendar {
             background: white;
@@ -62,81 +53,27 @@
             cursor: pointer;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            padding: 12px;
-            color: #ff1493;
-            font-weight: 600;
-        }
-
+        table { width: 100%; border-collapse: collapse; }
+        th { padding: 12px; color: #ff1493; font-weight: 600; }
         td {
             padding: 15px 8px;
-            height: 70px;
+            height: 75px;
             vertical-align: top;
             border: 1px solid #ffe0e9;
             position: relative;
             cursor: pointer;
             transition: 0.3s;
         }
-
-        td:hover {
-            background: #fff0f5;
-        }
-
-        .other-month {
-            color: #ddd;
-        }
-
-        .today {
-            background: #ff1493;
-            color: white;
-            border-radius: 50%;
-            font-weight: bold;
-        }
-
+        td:hover { background: #fff0f5; }
+        .today { background: #ff1493; color: white; border-radius: 50%; }
         .heart-day {
             position: absolute;
             bottom: 6px;
             right: 8px;
-            font-size: 1.3rem;
-            animation: beat 1.2s infinite;
+            font-size: 1.4rem;
+            animation: beat 1.3s infinite;
         }
-
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-        }
-
-        .note {
-            font-size: 0.85rem;
-            color: #ff1493;
-            margin-top: 4px;
-            display: block;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 35px;
-            border-radius: 25px;
-            max-width: 500px;
-            width: 90%;
-            text-align: left;
-        }
+        @keyframes beat { 0%,100% {transform:scale(1);} 50% {transform:scale(1.45);} }
 
         .nav {
             margin: 40px 0 30px 0;
@@ -155,25 +92,21 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        .nav button:hover {
-            background: #ff1493;
-            transform: scale(1.08);
-        }
+        .nav button:hover { background: #ff1493; transform: scale(1.08); }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Nasz Kalendarz Miłości <span class="heart">❤️</span></h1>
-        <p class="subtitle">Każdy dzień z Tobą jest wyjątkowy</p>
+        <p class="subtitle">Kliknij w dowolny dzień, żeby dodać notatkę</p>
 
-        <!-- Nawigacja -->
         <div class="nav">
             <button onclick="location.href='index.html'">❤️ Strona główna</button>
             <button onclick="location.href='powody.html'">1000 Powodów</button>
             <button onclick="location.href='koperty.html'">Koperty specjalne</button>
-            <button onclick="location.href='galeria.html'">Galeria</button>
-            <button onclick="location.href='odliczanie.html'">Odliczanie</button>
-            <button onclick="location.href='os-czasu.html'">Oś czasu</button>
+            <button onclick="location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="location.href='odliczanie.html'">Odliczanie dni</button>
+            <button onclick="location.href='os-czasu.html'">Nasza oś czasu</button>
         </div>
 
         <div class="calendar">
@@ -184,29 +117,16 @@
             </div>
             <table id="calendarTable">
                 <thead>
-                    <tr>
-                        <th>Nd</th><th>Pn</th><th>Wt</th><th>Śr</th><th>Cz</th><th>Pt</th><th>So</th>
-                    </tr>
+                    <tr><th>Nd</th><th>Pn</th><th>Wt</th><th>Śr</th><th>Cz</th><th>Pt</th><th>So</th></tr>
                 </thead>
                 <tbody id="calendarBody"></tbody>
             </table>
         </div>
     </div>
 
-    <!-- Modal do dodawania notatki -->
-    <div class="modal" id="noteModal">
-        <div class="modal-content">
-            <h2 id="modalDate"></h2>
-            <textarea id="noteText" rows="6" style="width:100%; padding:15px; border-radius:15px; border:2px solid #ff69b4; font-size:1.1rem;" placeholder="Napisz coś pięknego dla nas..."></textarea>
-            <br><br>
-            <button onclick="saveNote()" style="background:#ff69b4; color:white; padding:14px 40px; border:none; border-radius:50px; cursor:pointer;">Zapisz notatkę ❤️</button>
-            <button onclick="closeModal()" style="background:#ccc; color:#333; padding:14px 30px; border:none; border-radius:50px; cursor:pointer; margin-left:15px;">Anuluj</button>
-        </div>
-    </div>
-
     <script>
         let currentDate = new Date();
-        let notes = JSON.parse(localStorage.getItem("loveNotes")) || {};
+        let notes = JSON.parse(localStorage.getItem("loveCalendarNotes")) || {};
 
         function renderCalendar() {
             const monthYear = document.getElementById("monthYear");
@@ -220,39 +140,24 @@
 
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const daysInPrevMonth = new Date(year, month, 0).getDate();
 
             let date = 1;
-            let prevMonthDate = daysInPrevMonth - firstDay + 1;
 
             for (let i = 0; i < 6; i++) {
                 let row = document.createElement("tr");
-
                 for (let j = 0; j < 7; j++) {
                     let cell = document.createElement("td");
 
                     if (i === 0 && j < firstDay) {
-                        cell.textContent = prevMonthDate++;
-                        cell.classList.add("other-month");
-                    } 
-                    else if (date > daysInMonth) {
-                        cell.textContent = date - daysInMonth;
-                        cell.classList.add("other-month");
-                        date++;
-                    } 
-                    else {
+                        cell.textContent = "";
+                        cell.style.color = "#ddd";
+                    } else if (date > daysInMonth) {
+                        cell.textContent = "";
+                    } else {
                         const fullDate = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
-                        
-                        cell.textContent = date;
-                        
-                        // Dzisiejszy dzień
-                        if (date === new Date().getDate() && 
-                            month === new Date().getMonth() && 
-                            year === new Date().getFullYear()) {
-                            cell.classList.add("today");
-                        }
 
-                        // Dni z notatkami
+                        cell.textContent = date;
+
                         if (notes[fullDate]) {
                             const heart = document.createElement("span");
                             heart.className = "heart-day";
@@ -260,8 +165,7 @@
                             cell.appendChild(heart);
                         }
 
-                        // Kliknięcie w dzień
-                        cell.onclick = () => openNoteModal(fullDate, cell.textContent);
+                        cell.onclick = () => openNoteModal(fullDate, date);
                         date++;
                     }
                     row.appendChild(cell);
@@ -272,28 +176,18 @@
         }
 
         function openNoteModal(dateStr, day) {
-            document.getElementById("modalDate").textContent = `Notatka na ${day} ${currentDate.toLocaleString('pl-PL', { month: 'long' })} ${currentDate.getFullYear()}`;
-            document.getElementById("noteText").value = notes[dateStr] || "";
-            document.getElementById("noteModal").style.display = "flex";
-            window.currentNoteDate = dateStr;
-        }
-
-        function saveNote() {
-            const text = document.getElementById("noteText").value.trim();
-            if (window.currentNoteDate) {
-                if (text) {
-                    notes[window.currentNoteDate] = text;
+            const currentNote = notes[dateStr] || "";
+            const newNote = prompt(`Notatka na dzień ${day} ${currentDate.toLocaleString('pl-PL', { month: 'long' })} ${currentDate.getFullYear()}\n\nWpisz tekst:`, currentNote);
+            
+            if (newNote !== null) {
+                if (newNote.trim() === "") {
+                    delete notes[dateStr];
                 } else {
-                    delete notes[window.currentNoteDate];
+                    notes[dateStr] = newNote.trim();
                 }
-                localStorage.setItem("loveNotes", JSON.stringify(notes));
+                localStorage.setItem("loveCalendarNotes", JSON.stringify(notes));
+                renderCalendar();
             }
-            closeModal();
-            renderCalendar();
-        }
-
-        function closeModal() {
-            document.getElementById("noteModal").style.display = "none";
         }
 
         function prevMonth() {
@@ -306,10 +200,7 @@
             renderCalendar();
         }
 
-        // Inicjalizacja
-        window.onload = () => {
-            renderCalendar();
-        };
+        window.onload = renderCalendar;
     </script>
 </body>
 </html>
