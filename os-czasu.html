@@ -34,7 +34,7 @@
         .subtitle {
             font-size: 1.5rem;
             color: #fff;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
        
         .timeline {
@@ -185,7 +185,8 @@
         </div>
        
         <div class="timeline" id="timeline">
-            <!-- Twoje wydarzenia -->
+            
+            <!-- Przykład wydarzeń – możesz dodawać kolejne -->
             <div class="event">
                 <div class="content">
                     <div class="date">1 października 2025</div>
@@ -193,7 +194,39 @@
                     <div class="description">Zaczęło się wszystko. Od tego dnia nie wyobrażam sobie życia bez Ciebie.</div>
                 </div>
             </div>
-            <!-- Dodawaj więcej wydarzeń... -->
+           
+            <div class="event">
+                <div class="content">
+                    <div class="date">15 listopada 2025</div>
+                    <div class="title">Nasza pierwsza randka</div>
+                    <div class="description">Kolacja, długie rozmowy i ten moment, kiedy wiedziałem, że jesteś tą jedyną.</div>
+                </div>
+            </div>
+           
+            <div class="event">
+                <div class="content">
+                    <div class="date">24 grudnia 2025</div>
+                    <div class="title">Pierwsza wspólna Wigilia</div>
+                    <div class="description">Najpiękniejsze święta w moim życiu. Byłaś moim najlepszym prezentem.</div>
+                </div>
+            </div>
+           
+            <div class="event">
+                <div class="content">
+                    <div class="date">14 lutego 2026</div>
+                    <div class="title">Nasze pierwsze Walentynki</div>
+                    <div class="description">Czerwone róże, czekoladki i cały dzień tylko we dwoje.</div>
+                </div>
+            </div>
+           
+            <div class="event">
+                <div class="content">
+                    <div class="date">14 kwietnia 2026</div>
+                    <div class="title">Dzisiaj</div>
+                    <div class="description">Minęło już <strong id="daysFromStart">195</strong> dni od naszego początku. Kocham Cię coraz bardziej każdego dnia.</div>
+                </div>
+            </div>
+           
         </div>
        
         <button onclick="window.location.href='index.html'">Powrót do głównej strony</button>
@@ -201,6 +234,7 @@
     </div>
 
     <script>
+        // Animacja wydarzeń przy przewijaniu
         function animateTimeline() {
             const events = document.querySelectorAll('.event');
             const triggerBottom = window.innerHeight * 0.85;
@@ -212,15 +246,24 @@
                 }
             });
         }
-       
+
+        // Obliczanie liczby dni
+        function calculateDays() {
+            const start = new Date(2025, 9, 1); // 1 października 2025
+            const today = new Date();
+            const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+            
+            const daysElement = document.getElementById('daysFromStart');
+            if (daysElement) {
+                daysElement.textContent = diffDays;
+            }
+        }
+
+        // Uruchomienie skryptów
         window.addEventListener('scroll', animateTimeline);
         window.addEventListener('load', () => {
             animateTimeline();
-           
-            const start = new Date(2025, 9, 1);
-            const today = new Date();
-            const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-            document.getElementById('daysFromStart') ? document.getElementById('daysFromStart').textContent = diffDays : null;
+            calculateDays();
         });
     </script>
 </body>
