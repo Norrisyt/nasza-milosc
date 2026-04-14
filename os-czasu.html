@@ -6,55 +6,33 @@
     <title>Nasza Oś Czasu ❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
-       
+        
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             color: #333;
             text-align: center;
             min-height: 100vh;
         }
-       
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-       
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 4.2rem;
             color: white;
-            text-shadow: 0 0 25px rgba(255, 105, 180, 0.9);
-            margin-bottom: 10px;
+            text-shadow: 0 0 25px rgba(255,105,180,0.9);
         }
-       
-        .subtitle {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 40px;
-        }
-       
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-       
+        .subtitle { font-size: 1.5rem; color: #fff; margin-bottom: 50px; }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
         .timeline::before {
             content: '';
             position: absolute;
             width: 6px;
             background: white;
-            top: 0;
-            bottom: 0;
+            top: 0; bottom: 0;
             left: 50%;
             margin-left: -3px;
-            box-shadow: 0 0 15px rgba(255,255,255,0.6);
         }
-       
         .event {
             padding: 20px 40px;
             position: relative;
@@ -64,27 +42,13 @@
             transform: translateY(30px);
             transition: all 0.6s ease;
         }
-       
-        .event.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-       
-        .event:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
-       
-        .event:nth-child(even) {
-            left: 55%;
-            text-align: left;
-        }
-       
+        .event.visible { opacity: 1; transform: translateY(0); }
+        .event:nth-child(odd) { left: 0; text-align: right; }
+        .event:nth-child(even) { left: 55%; text-align: left; }
         .event::after {
             content: '❤️';
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 30px; height: 30px;
             background: #ff1493;
             color: white;
             border-radius: 50%;
@@ -93,51 +57,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 10px rgba(255,20,147,0.6);
         }
-       
-        .event:nth-child(odd)::after {
-            right: -15px;
-        }
-       
-        .event:nth-child(even)::after {
-            left: -15px;
-        }
-       
+        .event:nth-child(odd)::after { right: -15px; }
+        .event:nth-child(even)::after { left: -15px; }
         .content {
             background: white;
             padding: 25px 30px;
             border-radius: 20px;
             box-shadow: 0 10px 35px rgba(0,0,0,0.15);
         }
-       
-        .date {
-            color: #ff1493;
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-       
-        .title {
-            font-size: 1.5rem;
-            margin: 8px 0;
-            color: #333;
-        }
-       
-        .description {
-            line-height: 1.7;
-            color: #555;
-        }
-
-        /* Nawigacja */
         .nav {
-            margin: 30px 0 40px 0;
+            margin: 35px 0 45px 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
         }
-       
         .nav button {
             background: #ff69b4;
             color: white;
@@ -148,27 +83,7 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-       
-        .nav button:hover {
-            background: #ff1493;
-            transform: scale(1.08);
-        }
-
-        button {
-            margin-top: 50px;
-            background: #ff69b4;
-            color: white;
-            border: none;
-            padding: 16px 45px;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            cursor: pointer;
-        }
-       
-        button:hover {
-            background: #ff1493;
-            transform: scale(1.05);
-        }
+        .nav button:hover { background: #ff1493; transform: scale(1.08); }
     </style>
 </head>
 <body>
@@ -176,17 +91,16 @@
         <h1>Nasza Historia <span style="font-size:3.5rem;">❤️</span></h1>
         <p class="subtitle">Od pierwszego dnia aż do dziś...</p>
 
-        <!-- Nawigacja -->
         <div class="nav">
-            <button onclick="window.location.href='index.html'">❤️ Główna</button>
-            <button onclick="window.location.href='galeria.html'">Galeria wspomnień</button>
-            <button onclick="window.location.href='odliczanie.html'">Odliczanie dni</button>
-            <button onclick="window.location.href='os-czasu.html'">Nasza oś czasu</button>
+            <button onclick="location.href='index.html'">❤️ Strona główna</button>
+            <button onclick="location.href='powody.html'">1000 Powodów</button>
+            <button onclick="location.href='koperty.html'">Koperty specjalne</button>
+            <button onclick="location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="location.href='odliczanie.html'">Odliczanie dni</button>
+            <button onclick="location.href='os-czasu.html'">Nasza oś czasu</button>
         </div>
-       
+
         <div class="timeline" id="timeline">
-            
-            <!-- Przykład wydarzeń – możesz dodawać kolejne -->
             <div class="event">
                 <div class="content">
                     <div class="date">1 października 2025</div>
@@ -194,77 +108,22 @@
                     <div class="description">Zaczęło się wszystko. Od tego dnia nie wyobrażam sobie życia bez Ciebie.</div>
                 </div>
             </div>
-           
-            <div class="event">
-                <div class="content">
-                    <div class="date">15 listopada 2025</div>
-                    <div class="title">Nasza pierwsza randka</div>
-                    <div class="description">Kolacja, długie rozmowy i ten moment, kiedy wiedziałem, że jesteś tą jedyną.</div>
-                </div>
-            </div>
-           
-            <div class="event">
-                <div class="content">
-                    <div class="date">15 grudnia 2025</div>
-                    <div class="title"> Twoja 18 </div>
-                    <div class="description">JEden z najważniejszych dni w twoim życiu fajnie było tymbardziej potem w domu</div>
-                </div>
-            </div>
-           
-            <div class="event">
-                <div class="content">
-                    <div class="date">14 lutego 2026</div>
-                    <div class="title">Nasze pierwsze Walentynki</div>
-                    <div class="description">choć niesty tylko zdalnie ale jednak wspólne</div>
-                </div>
-            </div>
-           
-            <div class="event">
-                <div class="content">
-                    <div class="date">19 kwietnia 2026</div>
-                    <div class="title">Dokładnie 200 dni temó powiedziałaś tak </div>
-                    <div class="description">Minęło już <strong id="daysFromStart">200</strong> dni od naszego początku. Kocham Cię coraz bardziej każdego dnia.</div>
-                </div>
-            </div>
-           
+            <!-- Dodawaj kolejne wydarzenia -->
         </div>
-       
-        <button onclick="window.location.href='index.html'">Powrót do głównej strony</button>
-        <button onclick="window.location.href='galeria.html'" style="margin-left:15px;">Galeria wspomnień</button>
     </div>
 
     <script>
-        // Animacja wydarzeń przy przewijaniu
         function animateTimeline() {
             const events = document.querySelectorAll('.event');
             const triggerBottom = window.innerHeight * 0.85;
-           
             events.forEach(event => {
-                const eventTop = event.getBoundingClientRect().top;
-                if (eventTop < triggerBottom) {
+                if (event.getBoundingClientRect().top < triggerBottom) {
                     event.classList.add('visible');
                 }
             });
         }
-
-        // Obliczanie liczby dni
-        function calculateDays() {
-            const start = new Date(2025, 9, 1); // 1 października 2025
-            const today = new Date();
-            const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-            
-            const daysElement = document.getElementById('daysFromStart');
-            if (daysElement) {
-                daysElement.textContent = diffDays;
-            }
-        }
-
-        // Uruchomienie skryptów
         window.addEventListener('scroll', animateTimeline);
-        window.addEventListener('load', () => {
-            animateTimeline();
-            calculateDays();
-        });
+        window.addEventListener('load', animateTimeline);
     </script>
 </body>
 </html>
