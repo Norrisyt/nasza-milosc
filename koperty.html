@@ -6,7 +6,7 @@
     <title>Koperty Specjalne ❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
-        
+       
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
@@ -15,10 +15,10 @@
             text-align: center;
             min-height: 100vh;
         }
-        .container { 
-            max-width: 1100px; 
-            margin: 40px auto; 
-            padding: 20px; 
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
         }
         h1 {
             font-family: 'Dancing Script', cursive;
@@ -26,10 +26,10 @@
             color: #fff;
             text-shadow: 0 0 25px rgba(255,105,180,0.9);
         }
-        .subtitle { 
-            font-size: 1.5rem; 
-            color: #fff; 
-            margin-bottom: 50px; 
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 50px;
         }
         .envelopes {
             display: flex;
@@ -49,8 +49,8 @@
             transition: 0.4s;
             overflow: hidden;
         }
-        .envelope:hover { 
-            transform: scale(1.08) rotate(4deg); 
+        .envelope:hover {
+            transform: scale(1.08) rotate(4deg);
         }
         .envelope::before {
             content: '';
@@ -62,9 +62,9 @@
             border-bottom: 95px solid #fff;
             transform: translateX(-50%);
         }
-        .envelope.locked { 
-            filter: brightness(0.75) grayscale(80%); 
-            cursor: not-allowed; 
+        .envelope.locked {
+            filter: brightness(0.75) grayscale(80%);
+            cursor: not-allowed;
         }
         .envelope-content {
             position: absolute;
@@ -75,10 +75,10 @@
             font-weight: 600;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        .status { 
-            margin-top: 12px; 
-            font-size: 1.15rem; 
-            color: #fff; 
+        .status {
+            margin-top: 12px;
+            font-size: 1.15rem;
+            color: #fff;
         }
         .nav {
             margin: 40px 0 45px 0;
@@ -97,9 +97,9 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        .nav button:hover { 
-            background: #ff1493; 
-            transform: scale(1.08); 
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
         }
     </style>
 </head>
@@ -107,11 +107,10 @@
     <div class="container">
         <h1>Nasze Koperty ❤️</h1>
         <p class="subtitle">Specjalne listy tylko dla Ciebie...</p>
-
+        
         <div class="nav">
             <button onclick="location.href='index.html'">❤️ Strona główna</button>
             <button onclick="location.href='powody.html'">1000 Powodów</button>
-            <button onclick="location.href='koperty.html'">Koperty specjalne</button>
             <button onclick="location.href='kalendarz.html'">Kalendarz Miłości</button>
             <button onclick="location.href='galeria.html'">Galeria wspomnień</button>
             <button onclick="location.href='odliczanie.html'">Odliczanie dni</button>
@@ -119,75 +118,146 @@
         </div>
 
         <div class="envelopes">
+            <!-- 1 Miesiąc -->
+            <div class="envelope" id="envelope1m">
+                <div class="envelope-content">1 Miesiąc Razem</div>
+                <div class="status" id="status1m">1 listopada 2025</div>
+            </div>
 
-            <!-- Koperta 1: 200 dni -->
+            <!-- 100 Dni -->
+            <div class="envelope" id="envelope100">
+                <div class="envelope-content">100 Dni Razem</div>
+                <div class="status" id="status100">9 stycznia 2026</div>
+            </div>
+
+            <!-- 200 Dni -->
             <div class="envelope" id="envelope200">
                 <div class="envelope-content">200 Dni Razem</div>
                 <div class="status" id="status200">19 kwietnia 2026</div>
             </div>
 
-            <!-- Koperta 2: Zakończenie roku szkolnego -->
-            <div class="envelope" id="envelope1">
+            <!-- 300 Dni -->
+            <div class="envelope" id="envelope300">
+                <div class="envelope-content">300 Dni Razem</div>
+                <div class="status" id="status300">28 lipca 2026</div>
+            </div>
+
+            <!-- Walentynki -->
+            <div class="envelope" id="envelopeVal">
+                <div class="envelope-content">Pierwsze Walentynki</div>
+                <div class="status" id="statusVal">14 lutego 2026</div>
+            </div>
+
+            <!-- 1 Rok -->
+            <div class="envelope" id="envelope1y">
+                <div class="envelope-content">1 Rok Razem</div>
+                <div class="status" id="status1y">1 października 2026</div>
+            </div>
+
+            <!-- Zakończenie roku szkolnego -->
+            <div class="envelope" id="envelopeSchool">
                 <div class="envelope-content">Zakończenie roku szkolnego</div>
-                <div class="status" id="status1">24 kwietnia 2026</div>
+                <div class="status" id="statusSchool">24 czerwca 2026</div>
             </div>
-
-            <!-- Koperta 3: Rocznica -->
-            <div class="envelope" id="envelope2">
-                <div class="envelope-content">Nasza 1. Rocznica</div>
-                <div class="status" id="status2">1 października 2026</div>
-            </div>
-
         </div>
     </div>
 
     <script>
         const unlockDates = {
-            envelope200: new Date("2026-04-19T00:00:00"),   // 200 dni
-            envelope1:   new Date("2026-04-24T00:00:00"),   // Zakończenie roku
-            envelope2:   new Date("2026-10-01T00:00:00")    // Rocznica
+            envelope1m:    new Date("2025-11-01T00:00:00"),
+            envelope100:   new Date("2026-01-09T00:00:00"),
+            envelope200:   new Date("2026-04-19T00:00:00"),
+            envelope300:   new Date("2026-07-28T00:00:00"),
+            envelopeVal:   new Date("2026-02-14T00:00:00"),
+            envelope1y:    new Date("2026-10-01T00:00:00"),
+            envelopeSchool:new Date("2026-06-24T00:00:00")
         };
 
         function checkEnvelopes() {
             const now = new Date();
 
-            // Koperta 200 dni
-            const env200 = document.getElementById("envelope200");
-            const status200 = document.getElementById("status200");
-            if (now >= unlockDates.envelope200) {
-                env200.classList.remove("locked");
-                status200.innerHTML = `<strong>Kliknij, żeby otworzyć ❤️</strong>`;
-                env200.onclick = () => alert(`❤️ Moja najpiękniejsza,\n\nDzisiaj minęło dokładnie 200 dni odkąd jesteśmy razem.\n\nDziękuję Ci za każdy z tych dni. Kocham Cię coraz mocniej z każdym kolejnym. Jesteś moim największym szczęściem.\n\nNa zawsze Twój`);
-            } else {
-                env200.classList.add("locked");
+            function unlockEnvelope(id, message) {
+                const env = document.getElementById(id);
+                const statusId = "status" + id.replace("envelope", "");
+                const status = document.getElementById(statusId);
+                
+                if (now >= unlockDates[id]) {
+                    env.classList.remove("locked");
+                    status.innerHTML = `<strong>Kliknij, żeby otworzyć ❤️</strong>`;
+                    env.onclick = () => alert(message);
+                } else {
+                    env.classList.add("locked");
+                }
             }
 
-            // Koperta Zakończenie roku
-            const env1 = document.getElementById("envelope1");
-            const status1 = document.getElementById("status1");
-            if (now >= unlockDates.envelope1) {
-                env1.classList.remove("locked");
-                status1.innerHTML = `<strong>Kliknij, żeby otworzyć ❤️</strong>`;
-                env1.onclick = () => alert(`❤️ Kochana Weroniko,\n\nJestem z Ciebie taki dumny! Udało Ci się zakończyć rok szkolny. Ten rok był trudny, ale Ty byłaś niesamowita.\n\nKocham Cię jeszcze mocniej.`);
-            } else {
-                env1.classList.add("locked");
-            }
+            unlockEnvelope("envelope1m", 
+`❤️ Moja najpiękniejsza,
 
-            // Koperta Rocznica
-            const env2 = document.getElementById("envelope2");
-            const status2 = document.getElementById("status2");
-            if (now >= unlockDates.envelope2) {
-                env2.classList.remove("locked");
-                status2.innerHTML = `<strong>Kliknij, żeby otworzyć ❤️</strong>`;
-                env2.onclick = () => alert(`❤️ Moja najpiękniejsza,\n\nMinął już cały rok odkąd jesteśmy razem. Dziękuję Ci za każdy dzień. Jesteś moim największym szczęściem.\n\nNa zawsze Twój.`);
-            } else {
-                env2.classList.add("locked");
-            }
+Minął już pierwszy miesiąc odkąd jesteśmy razem.
+To był najpiękniejszy miesiąc w moim życiu.
+
+Dziękuję Ci za każdy uśmiech, każdy pocałunek i każdą chwilę z Tobą.
+
+Kocham Cię ❤️`);
+
+            unlockEnvelope("envelope100", 
+`❤️ Kochanie,
+
+Dokładnie 100 dni jesteśmy razem.
+100 dni Twojego śmiechu, Twoich spojrzeń i Twojej bliskości.
+
+Nie mogę się doczekać kolejnych setek dni u Twojego boku.
+
+Na zawsze Twój`);
+
+            unlockEnvelope("envelope200", 
+`❤️ Moja najpiękniejsza,
+
+200 dni razem... 
+Dwieście razy zasypiałem z myślą o Tobie.
+
+Dziękuję, że jesteś w moim życiu. Kocham Cię coraz mocniej.`);
+
+            unlockEnvelope("envelope300", 
+`❤️ Najpiękniejsza,
+
+300 dni minęło od naszego pierwszego dnia.
+A ja nadal patrzę na Ciebie z motylami w brzuchu.
+
+Jesteś moim największym szczęściem.
+
+Kocham Cię ponad wszystko ❤️`);
+
+            unlockEnvelope("envelopeVal", 
+`❤️ Moja Walentynka,
+
+To nasze pierwsze wspólne Walentynki.
+Chciałem, żeby ten dzień był wyjątkowy — tak jak wyjątkowa jesteś Ty.
+
+Kocham Cię całym sercem.`);
+
+            unlockEnvelope("envelope1y", 
+`❤️ Moja najpiękniejsza,
+
+Minął dokładnie rok odkąd jesteśmy razem.
+Rok pełen miłości, szczęścia i pięknych chwil.
+
+Dziękuję Ci za ten rok. 
+Nie wyobrażam sobie przyszłości bez Ciebie.
+
+Kocham Cię na zawsze ❤️`);
+
+            unlockEnvelope("envelopeSchool", 
+`❤️ Kochana,
+
+Gratuluję Ci zakończenia roku szkolnego!
+Jestem z Ciebie naprawdę dumny. Wiem, że to był trudny rok, a Ty dałaś radę.
+
+Bardzo Cię kocham i jestem przy Tobie zawsze.
+Teraz czas odpocząć ❤️`);
         }
 
-        // Uruchomienie przy załadowaniu strony
         window.onload = checkEnvelopes;
-        // Sprawdzaj co minutę
         setInterval(checkEnvelopes, 60000);
     </script>
 </body>
