@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nasze odliczanie ❤️</title>
+    <title>Odliczanie Dni ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+       
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
@@ -18,62 +18,91 @@
             align-items: center;
             justify-content: center;
         }
-        .container { max-width: 700px; padding: 40px 20px; }
+        .container { 
+            max-width: 750px; 
+            padding: 40px 20px; 
+        }
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.8rem;
-            color: white;
-            text-shadow: 0 0 20px rgba(255,105,180,0.8);
+            font-size: 4.4rem;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(255,105,180,0.9);
+            margin-bottom: 10px;
         }
-        .subtitle { font-size: 1.4rem; color: #fff; margin-bottom: 40px; }
-        .counter {
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 50px;
+            line-height: 1.4;
+        }
+        .counter-box {
             background: white;
-            padding: 50px 40px;
+            padding: 60px 40px;
             border-radius: 30px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
-        .days { font-size: 6.5rem; font-weight: bold; color: #ff1493; }
-        .days-label { font-size: 1.6rem; color: #666; margin-top: 10px; }
+        .days {
+            font-size: 7.5rem;
+            font-weight: 700;
+            color: #ff1493;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .days-label {
+            font-size: 1.8rem;
+            color: #666;
+            font-weight: 500;
+        }
+        .info {
+            margin-top: 35px;
+            font-size: 1.25rem;
+            color: #fff;
+        }
         .nav {
-            margin: 35px 0 45px 0;
+            margin: 50px 0 40px 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
+            gap: 14px;
         }
         .nav button {
             background: #ff69b4;
             color: white;
             border: none;
-            padding: 14px 28px;
-            font-size: 1.1rem;
+            padding: 15px 32px;
+            font-size: 1.15rem;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
         }
-        .nav button:hover { background: #ff1493; transform: scale(1.08); }
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Od 1 października 2025 <span class="heart">❤️</span></h1>
-        <p class="subtitle">Minęło razem z Tobą...</p>
+        <h1>Odliczanie Dni ❤️</h1>
+        <p class="subtitle">Minęło razem z Tobą od naszego pierwszego dnia</p>
 
+        <!-- Ujednolicona nawigacja -->
         <div class="nav">
             <button onclick="location.href='index.html'">❤️ Strona główna</button>
             <button onclick="location.href='kalendarz.html'">Kalendarz Miłości</button>
             <button onclick="location.href='powody.html'">1000 Powodów</button>
             <button onclick="location.href='koperty.html'">Koperty specjalne</button>
             <button onclick="location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="location.href='odliczanie.html'">Odliczanie dni</button>
             <button onclick="location.href='os-czasu.html'">Nasza oś czasu</button>
         </div>
 
-        <div class="counter">
+        <div class="counter-box">
             <div class="days" id="days">0</div>
-            <div class="days-label">DNI</div>
+            <div class="days-label">DNI RAZEM</div>
         </div>
-        
-        <div class="date">
+
+        <div class="info">
             Od: <strong>1 października 2025</strong><br>
             Dzisiaj: <strong id="today"></strong>
         </div>
@@ -81,14 +110,23 @@
 
     <script>
         function calculateDays() {
-            const startDate = new Date(2025, 9, 1);
+            const startDate = new Date(2025, 9, 1);   // 1 października 2025
             const today = new Date();
+            
+            // Obliczanie dni
             const diffTime = Math.abs(today - startDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('days').textContent = diffDays;
-            document.getElementById('today').textContent = today.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' });
+            
+            document.getElementById('days').textContent = diffDays.toLocaleString('pl-PL');
+            document.getElementById('today').textContent = today.toLocaleDateString('pl-PL', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
         }
+
         window.onload = calculateDays;
+        // Aktualizacja co minutę
         setInterval(calculateDays, 60000);
     </script>
 </body>
