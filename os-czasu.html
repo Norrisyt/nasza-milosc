@@ -119,4 +119,92 @@
             color: white;
             border: none;
             padding: 15px 32px;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav button:hover {
+            background: #ff1493;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nasza Oś Czasu <span style="font-size:3.8rem;">❤️</span></h1>
+        <p class="subtitle">Od pierwszego dnia aż do dziś...</p>
+        
+        <!-- Nawigacja -->
+        <div class="nav">
+            <button onclick="location.href='index.html'">❤️ Strona główna</button>
+            <button onclick="location.href='kalendarz.html'">Kalendarz Miłości</button>
+            <button onclick="location.href='powody.html'">1000 Powodów</button>
+            <button onclick="location.href='koperty.html'">Koperty specjalne</button>
+            <button onclick="location.href='galeria.html'">Galeria wspomnień</button>
+            <button onclick="location.href='odliczanie.html'">Odliczanie dni</button>
+            <button onclick="location.href='os-czasu.html'">Nasza oś czasu</button>
+        </div>
+
+        <div class="timeline" id="timeline">
+            
+            <!-- Wydarzenia -->
+            <div class="event">
+                <div class="content">
+                    <div class="date">13 września 2025</div>
+                    <div class="title">Zjazd dzieci + Pierwsze złapanie za rękę</div>
+                    <div class="description">Pierwszy raz trzymaliśmy się za ręce. To był magiczny moment na zjeździe dzieci.</div>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="content">
+                    <div class="date">23 sierpnia 2025</div>
+                    <div class="title">Rekolekcje + Pierwszy kontakt</div>
+                    <div class="description">Pierwszy prawdziwy kontakt i rozmowa podczas rekolekcji. Od tego dnia zaczęło się coś wyjątkowego.</div>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="content">
+                    <div class="date">1 października 2025</div>
+                    <div class="title">Pierwszy dzień razem</div>
+                    <div class="description">Zaczęła się nasza historia. Od tego dnia wszystko się zmieniło na lepsze.</div>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="content">
+                    <div class="date">15 grudnia 2025</div>
+                    <div class="title">18. urodziny Weroniki</div>
+                    <div class="description">Twoje osiemnaste urodziny. Wspaniały dzień pełen miłości i radości.</div>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="content">
+                    <div class="date">14 lutego 2026</div>
+                    <div class="title">Zdalne Walentynki</div>
+                    <div class="description">Nasze pierwsze walentynki na odległość. Wysyłaliśmy sobie piękne paczki pełne miłości.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function animateTimeline() {
+            const events = document.querySelectorAll('.event');
+            const triggerBottom = window.innerHeight * 0.82;
            
+            events.forEach(event => {
+                if (event.getBoundingClientRect().top < triggerBottom) {
+                    event.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', animateTimeline);
+        window.addEventListener('load', animateTimeline);
+    </script>
+</body>
+</html>
